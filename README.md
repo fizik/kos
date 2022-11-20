@@ -10,7 +10,7 @@
 <img src="https://raw.githubusercontent.com/fizik/kos/main/20221120_173839.jpg" width="700"><br>
 Chashkin Leonid and Demin Alex form KOSmos team.<br>
 
-- 🔭 We are currently working on [Kasperskiy OS](https://os.kaspersky.ru/)
+- 🔭 We are currently working on [Kaspersky OS](https://os.kaspersky.ru/)
 
 - 🌱 We are currently learning **Alphabot platform.**
 
