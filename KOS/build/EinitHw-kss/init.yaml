@@ -1,0 +1,93 @@
+entities:
+
+- name: mosquitto.Subscriber
+  env:
+    VFS_FILESYSTEM_BACKEND: client:kl.VfsRamFs
+    VFS_NETWORK_BACKEND: client:kl.VfsNet
+    MQTT_BROKER_ADDRESS: "10.0.2.2"
+    MQTT_BROKER_PORT: "1883"
+  connections:
+  - target: mosquitto.Showapp
+    id: showapp_connection
+  - target: kl.VfsNet
+    id: kl.VfsNet
+  - target: kl.VfsRamFs
+    id: kl.VfsRamFs
+
+
+- name: kl.Ntpd
+  path: ntpd
+  env:
+    VFS_FILESYSTEM_BACKEND: client:kl.VfsRamFs
+    VFS_NETWORK_BACKEND: client:kl.VfsNet
+  args:
+    - "-4"
+    - -c
+    - /etc/ntp.conf
+  connections:
+  - target: kl.VfsNet
+    id: kl.VfsNet
+  - target: kl.VfsRamFs
+    id: kl.VfsRamFs
+
+
+- name: mosquitto.Showapp
+  connections:
+  - target: mosquitto.Changestate
+    id: changestate_connection
+
+
+- name: mosquitto.Changestate
+
+
+- name: kl.VfsNet
+  path: VfsNet
+  connections:
+  - target: kl.drivers.BSP
+    id: kl.drivers.BSP
+  - target: kl.drivers.GPIO
+    id: kl.drivers.GPIO
+  args:
+        - -l
+        - devfs /dev devfs 0
+  env:
+        VFS_NETWORK_BACKEND: server:kl.VfsNet
+        VFS_FILESYSTEM_BACKEND: server:kl.VfsNet
+        DEFAULT_DNS_SERVER: 8.8.8.8
+
+- name: kl.rump.Dhcpcd
+  path: dhcpcd_entity
+  connections:
+  - target: kl.VfsNet
+    id: kl.VfsNet
+  - target: kl.VfsRamFs
+    id: kl.VfsRamFs
+  args:
+    - '-4'
+    - -f
+    - /etc/dhcpcd.conf
+  env:
+    VFS_FILESYSTEM_BACKEND: client{fs->net}:kl.VfsRamFs
+    VFS_NETWORK_BACKEND: client:kl.VfsNet
+
+- name: kl.VfsRamFs
+  path: VfsRamFs
+  connections:
+  - target: kl.drivers.RAMDisk
+    id: kl.drivers.RAMDisk
+  args:
+    - -l
+    - devfs /dev devfs 0
+  env:
+        ROOTFS: ramdisk0,0 / ext4 0
+        VFS_FILESYSTEM_BACKEND: server:kl.VfsRamFs
+
+- name: kl.drivers.BSP
+  path: bsp_hw
+
+- name: kl.drivers.GPIO
+  path: gpio_hw
+
+- name: kl.drivers.RAMDisk
+  path: ramdisk
+
