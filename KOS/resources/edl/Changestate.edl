@@ -1,0 +1,5 @@
+entity mosquitto.Changestate
+
+components {
+    Changestate : mosquitto.Setcommand
+}

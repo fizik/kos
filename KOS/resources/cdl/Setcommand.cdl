@@ -1,0 +1,5 @@
+component mosquitto.Setcommand
+
+endpoints {
+    setcommand : mosquitto.Setcommand
+}
