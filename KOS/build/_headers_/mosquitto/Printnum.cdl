@@ -1,0 +1,5 @@
+component mosquitto.Printnum
+
+endpoints {
+    printnum : mosquitto.Printnum
+}

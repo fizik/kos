@@ -1,0 +1,5 @@
+package mosquitto.Setcommand
+
+interface {
+    Setcommand(in UInt32 value);
+}
