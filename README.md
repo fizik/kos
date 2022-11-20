@@ -26,7 +26,12 @@ Chashkin Leonid and Demin Alex form KOSmos team.<br>
 
 - ⚡ Fun fact **This readme writen in https://rahuldkjain.github.io/gh-profile-readme-generator/**
 
-<h3 align="left">Connect with me:</h3>
+<br>
+<img src="https://github.com/fizik/kos/blob/main/architecture.PNG" width="700"><br>
+System architecture concept<br>
+
+
+<h3 align="left">Connect with us:</h3>
 <p align="left">
 </p>
 
