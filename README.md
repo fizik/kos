@@ -7,6 +7,9 @@
 
 <p align="left"> <a href="https://twitter.com/" target="blank"><img src="https://img.shields.io/twitter/follow/?logo=twitter&style=for-the-badge" alt="" /></a> </p>
 
+<img src="https://raw.githubusercontent.com/fizik/kos/main/20221120_173839.jpg" width="700"><br>
+Chashkin Leonid and Demin Alex form KOSmos team.<br>
+
 - 🔭 We are currently working on [Kasperskiy OS](https://os.kaspersky.ru/)
 
 - 🌱 We are currently learning **Alphabot platform.**
