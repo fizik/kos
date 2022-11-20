@@ -1,0 +1,44 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/miem/mqtt_subscriber/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_ffc4e/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_ffc4e.dir/build.make CMakeFiles/cmTC_ffc4e.dir/build
+gmake[1]: Entering directory '/home/miem/mqtt_subscriber/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ffc4e.dir/src.c.o
+/opt/KasperskyOS-Community-Edition-1.1.0.356/toolchain/bin/aarch64-kos-gcc -DCMAKE_HAVE_LIBC_PTHREAD  -fstack-protector-strong -fstack-clash-protection -O2 -mbranch-protection=standard  -o CMakeFiles/cmTC_ffc4e.dir/src.c.o -c /home/miem/mqtt_subscriber/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_ffc4e
+/opt/KasperskyOS-Community-Edition-1.1.0.356/toolchain/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ffc4e.dir/link.txt --verbose=1
+/opt/KasperskyOS-Community-Edition-1.1.0.356/toolchain/bin/aarch64-kos-gcc -fstack-protector-strong -fstack-clash-protection -O2 -mbranch-protection=standard  -Wl,-z,noexecstack -Wl,-z,now -static  CMakeFiles/cmTC_ffc4e.dir/src.c.o -o cmTC_ffc4e 
+/opt/KasperskyOS-Community-Edition-1.1.0.356/toolchain/bin/aarch64-kos-ld: CMakeFiles/cmTC_ffc4e.dir/src.c.o: in function `main':
+src.c:(.text.startup+0x30): undefined reference to `pthread_create'
+/opt/KasperskyOS-Community-Edition-1.1.0.356/toolchain/bin/aarch64-kos-ld: src.c:(.text.startup+0x40): undefined reference to `pthread_cancel'
+/opt/KasperskyOS-Community-Edition-1.1.0.356/toolchain/bin/aarch64-kos-ld: src.c:(.text.startup+0x54): undefined reference to `pthread_exit'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_ffc4e.dir/build.make:99: cmTC_ffc4e] Error 1
+gmake[1]: Leaving directory '/home/miem/mqtt_subscriber/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_ffc4e/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  // KOS: Does not support it.
+  #if !defined(__KOS__)
+  pthread_atfork(NULL, NULL, NULL);
+  #endif
+  pthread_exit(NULL);
+
+  return 0;
+}
+
