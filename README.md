@@ -1,4 +1,4 @@
-<h1 align="center">Hi 👋! This is the Secured Alphabot transport with Kaspersky OS from KOSmos team!</h1>
+<h1 align="center">Hi 👋! This is the Secured Alphabot transport system with Kaspersky OS from KOSmos team!</h1>
 
 <h3 align="center">System architecture:</h3>
 <img src="https://github.com/fizik/kos/blob/main/architecture2.PNG" width="700">
