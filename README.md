@@ -5,7 +5,7 @@
 System consist of 3 parts:
 <br>
 - MQTT transport module<br>
-- Commant QUEUE and security module<br>
+- Command QUEUE and security module<br>
 - Motors management module through GPIO<br>
 <br>
 
